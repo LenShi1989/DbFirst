@@ -25,7 +25,7 @@ public partial class TodoContext : DbContext
             entity.Property(e => e.insertTime)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.name)
+            entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(100);
             entity.Property(e => e.updateEmployeeName).HasMaxLength(250);

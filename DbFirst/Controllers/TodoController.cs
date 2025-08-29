@@ -6,6 +6,9 @@ using DbFirst.Dots;
 using DbFirst.Parameters;
 using System.Linq;
 using System;
+using AutoMapper;
+using DbFirst.Profiles;
+
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,10 +20,12 @@ namespace DbFirst.Controllers
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _todoContext;
+        private readonly IMapper _mapper;
 
-        public TodoController(TodoContext todoContext)
+        public TodoController(TodoContext todoContext, IMapper mapper)
         {
             _todoContext = todoContext;
+            _mapper = mapper;
         }
 
 
@@ -86,6 +91,51 @@ namespace DbFirst.Controllers
         }
 
 
+        // GET: api/Todo/AutoMapper
+        [HttpGet("AutoMapper")]
+        public IEnumerable<TodoListSelectDto> GetTodoList2([FromQuery] TodoSelectParameter value)
+        {
+            var result = _todoContext.TodoList
+                //.AsEnumerable()
+                .Select(a => a);
+
+            //.Select(a => new TodoListSelectDto
+            //{
+            //    Enable = a.enable,
+            //    InsertEmployeeName = a.insertEmployeeName,
+            //    InsertTime = a.insertTime,
+            //    Name = a.name,
+            //    Orders = a.orders,
+            //    TodoId = a.todoId,
+            //    UpdateEmployeeName = a.updateEmployeeName,
+            //    UpdateTime = a.updateTime
+            //});
+
+            if (!string.IsNullOrWhiteSpace(value.name))
+            {
+                result = result.Where(a => a.Name.Contains(value.name));
+            }
+
+            if (value.enable != null)
+            {
+                result = result.Where(a => a.Enable == value.enable);
+            }
+
+            if (value.InsertTime != null)
+            {
+                result = result.Where(a => a.InsertTime == value.InsertTime);
+            }
+
+            if (value.minOrder != null && value.maxOrder != null)
+            {
+                result = result.Where(a => a.Orders >= value.minOrder && a.Orders <= value.maxOrder);
+            }
+
+            var map = _mapper.Map< IEnumerable<TodoList>, IEnumerable<TodoListSelectDto>>(result);
+
+            return map;
+        }
+
 
         // GET: api/<TodoController>
         [HttpGet]
@@ -119,23 +169,19 @@ namespace DbFirst.Controllers
         {
         }
 
-
-
         private static TodoListSelectDto ItemToDto(TodoList a)
         {
             return new TodoListSelectDto
             {
                 Enable = a.enable,
-                InsertEmployeeName = a.insertEmployeeName,
+                InsertEmployeeName = a.insertEmployeeName + "(" + a.todoId + ")",
                 InsertTime = a.insertTime,
-                Name = a.name,
+                Name = a.Name,
                 Orders = a.orders,
                 TodoId = a.todoId,
-                UpdateEmployeeName = a.updateEmployeeName,
+                UpdateEmployeeName = a.updateEmployeeName + "(" + a.todoId + ")",
                 UpdateTime = a.updateTime
             };
         }
-
-
     }
 }
