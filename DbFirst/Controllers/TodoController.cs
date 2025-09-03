@@ -19,12 +19,12 @@ namespace DbFirst.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        private readonly TodoContext _todoContext;
+        private readonly TodoListContext _todoListContext;
         private readonly IMapper _mapper;
 
-        public TodoController(TodoContext todoContext, IMapper mapper)
+        public TodoController(TodoListContext todoListContext, IMapper mapper)
         {
-            _todoContext = todoContext;
+            _todoListContext = todoListContext;
             _mapper = mapper;
         }
 
@@ -51,7 +51,7 @@ namespace DbFirst.Controllers
         [HttpGet("Len")]
         public IEnumerable<TodoListSelectDto> GetTodoList([FromQuery] TodoSelectParameter value)
         {
-            var result = _todoContext.TodoList
+            var result = _todoListContext.TodoList
                 .AsEnumerable()
                 .Select(a => ItemToDto(a));
 
@@ -95,7 +95,7 @@ namespace DbFirst.Controllers
         [HttpGet("AutoMapper")]
         public IEnumerable<TodoListSelectDto> GetTodoList2([FromQuery] TodoSelectParameter value)
         {
-            var result = _todoContext.TodoList
+            var result = _todoListContext.TodoList
                 //.AsEnumerable()
                 .Select(a => a);
 
@@ -113,22 +113,22 @@ namespace DbFirst.Controllers
 
             if (!string.IsNullOrWhiteSpace(value.name))
             {
-                result = result.Where(a => a.Name.Contains(value.name));
+                result = result.Where(a => a.name.Contains(value.name));
             }
 
             if (value.enable != null)
             {
-                result = result.Where(a => a.Enable == value.enable);
+                result = result.Where(a => a.enable == value.enable);
             }
 
             if (value.InsertTime != null)
             {
-                result = result.Where(a => a.InsertTime == value.InsertTime);
+                result = result.Where(a => a.insertTime == value.InsertTime);
             }
 
             if (value.minOrder != null && value.maxOrder != null)
             {
-                result = result.Where(a => a.Orders >= value.minOrder && a.Orders <= value.maxOrder);
+                result = result.Where(a => a.orders >= value.minOrder && a.orders <= value.maxOrder);
             }
 
             var map = _mapper.Map< IEnumerable<TodoList>, IEnumerable<TodoListSelectDto>>(result);
@@ -176,7 +176,7 @@ namespace DbFirst.Controllers
                 Enable = a.enable,
                 InsertEmployeeName = a.insertEmployeeName + "(" + a.todoId + ")",
                 InsertTime = a.insertTime,
-                Name = a.Name,
+                Name = a.name,
                 Orders = a.orders,
                 TodoId = a.todoId,
                 UpdateEmployeeName = a.updateEmployeeName + "(" + a.todoId + ")",

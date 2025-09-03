@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<TodoContext>(options =>
+builder.Services.AddDbContext<TodoListContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(typeof(Program));
@@ -35,12 +35,7 @@ app.MapControllers();
 
 
 using var scope = app.Services.CreateScope();
-var context = scope.ServiceProvider.GetRequiredService<TodoContext>();
-
-
-
-
-
+var context = scope.ServiceProvider.GetRequiredService<TodoListContext>();
 
 
 try

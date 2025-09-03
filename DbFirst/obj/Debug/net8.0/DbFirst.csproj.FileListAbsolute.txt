@@ -351,3 +351,6 @@ C:\Users\Len\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\obj\Debug\net8
 C:\Users\Len\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\obj\Debug\net8.0\DbFirst.sourcelink.json
 C:\Users\Len\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Len\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\LenShih\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\obj\Debug\net8.0\DbFirst.sourcelink.json
+C:\Users\LenShih\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\LenShih\Documents\Visual Studio 2022\Project\DbFirst\DbFirst\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
