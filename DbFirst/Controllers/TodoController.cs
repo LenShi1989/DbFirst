@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using DbFirst.Models;
+﻿using AutoMapper;
 using DbFirst.Dots;
+using DbFirst.Models;
 using DbFirst.Parameters;
-using System.Linq;
-using System;
-using AutoMapper;
 using DbFirst.Profiles;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 
 
 
@@ -19,12 +20,12 @@ namespace DbFirst.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        private readonly TodoListContext _todoListContext;
+        private readonly TodoContext _todoContext;
         private readonly IMapper _mapper;
 
-        public TodoController(TodoListContext todoListContext, IMapper mapper)
+        public TodoController(TodoContext todoContext, IMapper mapper)
         {
-            _todoListContext = todoListContext;
+            _todoContext = todoContext;
             _mapper = mapper;
         }
 
@@ -49,10 +50,13 @@ namespace DbFirst.Controllers
 
         // GET api/Todo/Len
         [HttpGet("Len")]
-        public IEnumerable<TodoListSelectDto> GetTodoList([FromQuery] TodoSelectParameter value)
+        public IEnumerable<TodoListDto> GetTodoList([FromQuery] TodoSelectParameter value)
         {
-            var result = _todoListContext.TodoList
-                .AsEnumerable()
+            var result = _todoContext.TodoList
+                .Include(a => a.InsertEmployee)
+                .Include(a => a.UpdateEmployee)
+                .Include(a => a.UploadFile)
+                //.AsEnumerable()
                 .Select(a => ItemToDto(a));
 
             //.Select(a => new TodoListSelectDto
@@ -86,17 +90,49 @@ namespace DbFirst.Controllers
             {
                 result = result.Where(a => a.Orders >= value.minOrder && a.Orders <= value.maxOrder);
             }
-           
+
             return result;
         }
 
 
+        // GET api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3
+        [HttpGet("Len/{id}")]
+        public TodoListDto Get(Guid id)
+        {
+            var result = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select new TodoListDto
+                          {
+                              Enable = a.Enable,
+                              InsertEmployeeName = a.InsertEmployee.Name,
+                              InsertTime = a.InsertTime,
+                              Name = a.Name,
+                              Orders = a.Orders,
+                              TodoId = a.TodoId,
+                              UpdateEmployeeName = a.UpdateEmployee.Name,
+                              UpdateTime = a.UpdateTime,
+                              UploadFiles = (from b in _todoContext.UploadFile
+                                             where a.TodoId == b.TodoId
+                                             select new UploadFileDto
+                                             {
+                                                 Name = b.Name,
+                                                 Src = b.Src,
+                                                 TodoId = b.TodoId,
+                                                 UploadFileId = b.UploadFileId
+                                             }).ToList()
+                          }).SingleOrDefault();
+            return result;
+        }
+
         // GET: api/Todo/AutoMapper
         [HttpGet("AutoMapper")]
-        public IEnumerable<TodoListSelectDto> GetTodoList2([FromQuery] TodoSelectParameter value)
+        public IEnumerable<TodoListDto> GetAutoMapper([FromQuery] TodoSelectParameter value)
         {
-            var result = _todoListContext.TodoList
+            var result = _todoContext.TodoList
                 //.AsEnumerable()
+                .Include(a => a.UpdateEmployee)
+                .Include(a => a.InsertEmployee)
+                .Include(a => a.UploadFile)
                 .Select(a => a);
 
             //.Select(a => new TodoListSelectDto
@@ -113,25 +149,25 @@ namespace DbFirst.Controllers
 
             if (!string.IsNullOrWhiteSpace(value.name))
             {
-                result = result.Where(a => a.name.Contains(value.name));
+                result = result.Where(a => a.Name.Contains(value.name));
             }
 
             if (value.enable != null)
             {
-                result = result.Where(a => a.enable == value.enable);
+                result = result.Where(a => a.Enable == value.enable);
             }
 
             if (value.InsertTime != null)
             {
-                result = result.Where(a => a.insertTime == value.InsertTime);
+                result = result.Where(a => a.InsertTime == value.InsertTime);
             }
 
             if (value.minOrder != null && value.maxOrder != null)
             {
-                result = result.Where(a => a.orders >= value.minOrder && a.orders <= value.maxOrder);
+                result = result.Where(a => a.Orders >= value.minOrder && a.Orders <= value.maxOrder);
             }
 
-            var map = _mapper.Map< IEnumerable<TodoList>, IEnumerable<TodoListSelectDto>>(result);
+            var map = _mapper.Map<IEnumerable<TodoListDto>>(result);
 
             return map;
         }
@@ -169,18 +205,34 @@ namespace DbFirst.Controllers
         {
         }
 
-        private static TodoListSelectDto ItemToDto(TodoList a)
+        private static TodoListDto ItemToDto(TodoList a)
         {
-            return new TodoListSelectDto
+            List<UploadFileDto> updto = new List<UploadFileDto>();
+
+            foreach (var temp in a.UploadFile)
             {
-                Enable = a.enable,
-                InsertEmployeeName = a.insertEmployeeName + "(" + a.todoId + ")",
-                InsertTime = a.insertTime,
-                Name = a.name,
-                Orders = a.orders,
-                TodoId = a.todoId,
-                UpdateEmployeeName = a.updateEmployeeName + "(" + a.todoId + ")",
-                UpdateTime = a.updateTime
+                UploadFileDto up = new UploadFileDto
+                {
+                    Name = temp.Name,
+                    Src = temp.Src,
+                    TodoId = temp.TodoId,
+                    UploadFileId = temp.UploadFileId
+                };
+                updto.Add(up);
+            }
+
+
+            return new TodoListDto
+            {
+                Enable = a.Enable,
+                InsertEmployeeName = a.InsertEmployee.Name,
+                InsertTime = a.InsertTime,
+                Name = a.Name,
+                Orders = a.Orders,
+                TodoId = a.TodoId,
+                UpdateEmployeeName = a.UpdateEmployee.Name,
+                UpdateTime = a.UpdateTime,
+                UploadFiles = updto
             };
         }
     }

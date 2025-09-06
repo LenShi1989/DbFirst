@@ -5,21 +5,25 @@ namespace DbFirst.Models;
 
 public partial class TodoList
 {
-    public Guid todoId { get; set; }
+    public Guid TodoId { get; set; }
 
-    public string name { get; set; }
+    public string Name { get; set; }
 
-    public DateTime? insertTime { get; set; }
+    public DateTime InsertTime { get; set; }
 
-    public DateTime? updateTime { get; set; }
+    public DateTime UpdateTime { get; set; }
 
-    public bool? enable { get; set; }
+    public bool Enable { get; set; }
 
-    public int? orders { get; set; }
+    public int Orders { get; set; }
 
-    public string insertEmployeeName { get; set; }
+    public Guid InsertEmployeeId { get; set; }
 
-    public string updateEmployeeName { get; set; }
+    public Guid UpdateEmployeeId { get; set; }
 
-    public string uploadFiles { get; set; }
+    public virtual Employee InsertEmployee { get; set; }
+
+    public virtual Employee UpdateEmployee { get; set; }
+
+    public virtual ICollection<UploadFile> UploadFile { get; set; } = new List<UploadFile>();
 }

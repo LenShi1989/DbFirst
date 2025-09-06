@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<TodoListContext>(options =>
+builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(typeof(Program));
@@ -35,19 +35,19 @@ app.MapControllers();
 
 
 using var scope = app.Services.CreateScope();
-var context = scope.ServiceProvider.GetRequiredService<TodoListContext>();
+var context = scope.ServiceProvider.GetRequiredService<TodoContext>();
 
 
 try
 {
     // 嘗試打開資料庫連線
     await context.Database.OpenConnectionAsync();
-    Console.WriteLine("OK 連線成功！");
+    Console.WriteLine("連線成功！");
     await context.Database.CloseConnectionAsync();
 }
 catch (Exception ex)
 {
-    Console.WriteLine("X 連線失敗：");
+    Console.WriteLine("連線失敗：");
     Console.WriteLine(ex.Message);
 }
 

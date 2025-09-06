@@ -7,16 +7,28 @@
       "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\models\\todolistcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\models\\todolistcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\dots\\todolistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\dots\\todolistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\profiles\\todolistprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\profiles\\todolistprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\dots\\uploadfiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\dots\\uploadfiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\models\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\models\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,45 +38,84 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UploadFileDto.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Dots\\UploadFileDto.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Dots\\UploadFileDto.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Dots\\UploadFileDto.cs",
+              "RelativeToolTip": "DbFirst\\Dots\\UploadFileDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T07:50:09.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TodoListDto.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Dots\\TodoListDto.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Dots\\TodoListDto.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Dots\\TodoListDto.cs",
+              "RelativeToolTip": "DbFirst\\Dots\\TodoListDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T07:46:52.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Program.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Program.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Program.cs",
+              "RelativeToolTip": "DbFirst\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAgwCsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T07:40:20.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "DbFirst\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\appsettings.Development.json",
+              "RelativeToolTip": "DbFirst\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-06T07:29:29.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TodoContext.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Models\\TodoContext.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Models\\TodoContext.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Models\\TodoContext.cs",
+              "RelativeToolTip": "DbFirst\\Models\\TodoContext.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T07:29:20.241Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TodoController.cs",
               "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
               "RelativeDocumentMoniker": "DbFirst\\Controllers\\TodoController.cs",
-              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs*",
-              "RelativeToolTip": "DbFirst\\Controllers\\TodoController.cs*",
-              "ViewState": "AgIAAKwAAAAAAAAAAAAYwLMAAAAiAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
+              "RelativeToolTip": "DbFirst\\Controllers\\TodoController.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAUwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-03T12:23:26.893Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TodoListContext.cs",
-              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Models\\TodoListContext.cs",
-              "RelativeDocumentMoniker": "DbFirst\\Models\\TodoListContext.cs",
-              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Models\\TodoListContext.cs",
-              "RelativeToolTip": "DbFirst\\Models\\TodoListContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T12:21:59.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Program.cs",
-              "RelativeDocumentMoniker": "DbFirst\\Program.cs",
-              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Program.cs",
-              "RelativeToolTip": "DbFirst\\Program.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T12:21:14.883Z",
               "EditorCaption": ""
             },
             {
@@ -75,7 +126,7 @@
               "RelativeDocumentMoniker": "DbFirst\\Profiles\\TodoListProfile.cs",
               "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Profiles\\TodoListProfile.cs",
               "RelativeToolTip": "DbFirst\\Profiles\\TodoListProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAkwA4AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-03T12:21:04.765Z",
               "EditorCaption": ""
