@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DbFirst.Dots;
+using DbFirst.Dtos;
 using DbFirst.Models;
 using DbFirst.Parameters;
 using DbFirst.Profiles;
@@ -8,9 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-
-
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -171,6 +168,49 @@ namespace DbFirst.Controllers
 
             return map;
         }
+
+        [HttpGet("GetSQL")]
+        public IEnumerable<TodoList> GetSQL(string name)
+        {
+            string sql = "select * from todolist where 1=1";
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                sql = sql + " and name like N'%" + name + "%'";
+            }
+
+            var result = _todoContext.TodoList.FromSqlRaw(sql);
+
+            return result;
+        }
+
+
+        [HttpGet("GetSQLDto")]
+        public IEnumerable<TodoListDto> GetSQLDto(string name)
+        {
+            string sql = @"SELECT [TodoId]
+      ,a.[Name]
+      ,[InsertTime]
+      ,[UpdateTime]
+      ,[Enable]
+      ,[Orders]
+      ,b.Name as InsertEmployeeName
+      ,c.Name as UpdateEmployeeName
+  FROM [TodoList] a
+  join Employee b on a.InsertEmployeeId=b.EmployeeId
+  join Employee c on a.UpdateEmployeeId=c.EmployeeId where 1=1";
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                sql = sql + " and name like N'%" + name + "%'";
+            }
+
+            var result = _todoContext.ExecSQL<TodoListDto>(sql);
+
+            return result;
+        }
+
+
 
 
         // GET: api/<TodoController>

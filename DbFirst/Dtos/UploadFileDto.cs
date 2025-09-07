@@ -1,4 +1,4 @@
-﻿namespace DbFirst.Dots
+﻿namespace DbFirst.Dtos
 {
     public class UploadFileDto
     {

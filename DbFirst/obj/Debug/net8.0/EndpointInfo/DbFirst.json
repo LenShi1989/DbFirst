@@ -215,6 +215,100 @@
         }
       }
     },
+    "/api/Todo/GetSQL": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoList"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoList"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoList"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Todo/GetSQLDto": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Todo": {
       "get": {
         "tags": [
@@ -425,6 +519,148 @@
   },
   "components": {
     "schemas": {
+      "Division": {
+        "type": "object",
+        "properties": {
+          "divisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "employee": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Employee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobTitleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "divisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "division": {
+            "$ref": "#/components/schemas/Division"
+          },
+          "jobTitle": {
+            "$ref": "#/components/schemas/JobTitle"
+          },
+          "todoListInsertEmployee": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TodoList"
+            },
+            "nullable": true
+          },
+          "todoListUpdateEmployee": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TodoList"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobTitle": {
+        "type": "object",
+        "properties": {
+          "jobTitleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "employee": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Employee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TodoList": {
+        "type": "object",
+        "properties": {
+          "todoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "insertTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "enable": {
+            "type": "boolean"
+          },
+          "orders": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "insertEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updateEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "insertEmployee": {
+            "$ref": "#/components/schemas/Employee"
+          },
+          "updateEmployee": {
+            "$ref": "#/components/schemas/Employee"
+          },
+          "uploadFile": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UploadFile"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TodoListDto": {
         "type": "object",
         "properties": {
@@ -465,6 +701,31 @@
               "$ref": "#/components/schemas/UploadFileDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UploadFile": {
+        "type": "object",
+        "properties": {
+          "uploadFileId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "src": {
+            "type": "string",
+            "nullable": true
+          },
+          "todoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "todo": {
+            "$ref": "#/components/schemas/TodoList"
           }
         },
         "additionalProperties": false

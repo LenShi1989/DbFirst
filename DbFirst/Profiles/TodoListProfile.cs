@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DbFirst.Dots;
+using DbFirst.Dtos;
 using DbFirst.Models;
 
 namespace DbFirst.Profiles
@@ -13,14 +9,14 @@ namespace DbFirst.Profiles
         public TodoListProfile()
         {
             CreateMap<TodoList, TodoListDto>()
-                .ForMember(
-                    dest => dest.InsertEmployeeName,
-                    opt => opt.MapFrom(src => src.InsertEmployee.Name + "(" + src.TodoId + ")")
-                )
-                .ForMember(
-                    dest => dest.UpdateEmployeeName,
-                    opt => opt.MapFrom(src => src.UpdateEmployee.Name + "(" + src.TodoId + ")")
-                );
+            .ForMember(
+            dest => dest.InsertEmployeeName,
+            opt => opt.MapFrom(src => src.InsertEmployee.Name + "(" + src.InsertEmployeeId + ")")
+            )
+            .ForMember(
+            dest => dest.UpdateEmployeeName,
+            opt => opt.MapFrom(src => src.UpdateEmployee.Name + "(" + src.UpdateEmployeeId + ")")
+            );
         }
     }
 }
