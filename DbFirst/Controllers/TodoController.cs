@@ -4,10 +4,15 @@ using DbFirst.Models;
 using DbFirst.Parameters;
 using DbFirst.Profiles;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Net;
+
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,49 +52,42 @@ namespace DbFirst.Controllers
 
         // GET api/Todo/Len
         [HttpGet("Len")]
-        public IEnumerable<TodoListDto> GetTodoList([FromQuery] TodoSelectParameter value)
+        public ActionResult<IEnumerable<TodoListDto>> GetTodoList([FromQuery] TodoSelectParameter value)
         {
             var result = _todoContext.TodoList
                 .Include(a => a.InsertEmployee)
                 .Include(a => a.UpdateEmployee)
                 .Include(a => a.UploadFile)
-                //.AsEnumerable()
-                .Select(a => ItemToDto(a));
-
-            //.Select(a => new TodoListSelectDto
-            //{
-            //    Enable = a.enable,
-            //    InsertEmployeeName = a.insertEmployeeName,
-            //    InsertTime = a.insertTime,
-            //    Name = a.name,
-            //    Orders = a.orders,
-            //    TodoId = a.todoId,
-            //    UpdateEmployeeName = a.updateEmployeeName,
-            //    UpdateTime = a.updateTime
-            //});
+                .Select(a => a); // 这里可以省略，因为默认就是这样
 
             if (!string.IsNullOrWhiteSpace(value.name))
             {
                 result = result.Where(a => a.Name.Contains(value.name));
             }
-
             if (value.enable != null)
             {
                 result = result.Where(a => a.Enable == value.enable);
             }
-
             if (value.InsertTime != null)
             {
                 result = result.Where(a => a.InsertTime == value.InsertTime);
             }
-
             if (value.minOrder != null && value.maxOrder != null)
             {
                 result = result.Where(a => a.Orders >= value.minOrder && a.Orders <= value.maxOrder);
             }
 
-            return result;
+            var dtoResult = result.ToList().Select(a => ItemToDto(a)).ToList();
+
+            if (dtoResult == null || dtoResult.Count <= 0)
+            {
+                return NotFound("找不到資源");
+            }
+
+            return Ok(dtoResult);
         }
+
+
 
 
         // GET api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3
@@ -209,6 +207,59 @@ namespace DbFirst.Controllers
 
             return result;
         }
+
+
+        [HttpGet("GetSQLDto2")]
+        public IEnumerable<TodoListDto> GetSQLDto2(string name)
+        {
+            using (var command = _todoContext.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = @"
+            SELECT 
+                [TodoId],
+                a.[Name],
+                [InsertTime],
+                [UpdateTime],
+                [Enable],
+                [Orders],
+                b.Name as InsertEmployeeName,
+                c.Name as UpdateEmployeeName
+            FROM 
+                [TodoList] a
+            JOIN 
+                Employee b ON a.InsertEmployeeId = b.EmployeeId
+            JOIN 
+                Employee c ON a.UpdateEmployeeId = c.EmployeeId
+            WHERE 
+                1 = 1";
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    command.CommandText += " AND a.Name LIKE @Name";
+                    command.Parameters.Add(new SqlParameter("@Name", $"%{name}%"));
+                }
+
+                _todoContext.Database.OpenConnection();
+                var result = command.ExecuteReader()
+                    .Cast<DbDataRecord>()
+                    .Select(record => new TodoListDto
+                    {
+                        TodoId = (Guid)record["TodoId"], // 修改这里为 Guid 类型
+                        Name = record["Name"] as string,
+                        InsertTime = (DateTime)record["InsertTime"],
+                        UpdateTime = (DateTime)record["UpdateTime"],
+                        Enable = (bool)record["Enable"],
+                        Orders = (int)record["Orders"],
+                        InsertEmployeeName = record["InsertEmployeeName"] as string,
+                        UpdateEmployeeName = record["UpdateEmployeeName"] as string
+                    }).ToList();
+
+                return result;
+            }
+        }
+
+
+
 
 
 
