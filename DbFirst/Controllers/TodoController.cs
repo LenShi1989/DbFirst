@@ -280,8 +280,10 @@ namespace DbFirst.Controllers
 
         // POST api/<TodoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] TodoList value)
         {
+            _todoContext.Add(value);
+            _todoContext.SaveChanges();
         }
 
         // PUT api/<TodoController>/5

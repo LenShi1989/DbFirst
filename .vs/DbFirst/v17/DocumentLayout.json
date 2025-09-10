@@ -1,14 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\",
+  "WorkspaceRootPath": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\len\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\controllers\\todouploadfilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\lenshih\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\controllers\\todouploadfilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\controllers\\todouploadfilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|c:\\users\\len\\documents\\visual studio 2022\\project\\dbfirst\\dbfirst\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFBFB3B4-A31F-44C0-92D7-5F11E94CFDB1}|DbFirst\\DbFirst.csproj|solutionrelative:dbfirst\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_NV0J53D_SQLEXPRESS/Todo/True/SqlTable/dbo.TodoList.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +21,42 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dbo.TodoList [\u8CC7\u6599]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_NV0J53D_SQLEXPRESS/Todo/True/SqlTable/dbo.TodoList.sql",
+              "ToolTip": "dbo.TodoList [\u8CC7\u6599]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-09-10T12:38:35.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TodoUploadFileController.cs",
-              "DocumentMoniker": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoUploadFileController.cs",
-              "RelativeDocumentMoniker": "DbFirst\\Controllers\\TodoUploadFileController.cs",
-              "ToolTip": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoUploadFileController.cs*",
-              "RelativeToolTip": "DbFirst\\Controllers\\TodoUploadFileController.cs*",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAQwFIAAAApAAAAAAAAAA==",
+              "Title": "TodoController.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Controllers\\TodoController.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
+              "RelativeToolTip": "DbFirst\\Controllers\\TodoController.cs",
+              "ViewState": "AgIAABYBAAAAAAAAAAAkwB8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T13:15:38.43Z",
+              "WhenOpened": "2025-09-10T12:20:38.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TodoController.cs",
-              "DocumentMoniker": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
-              "RelativeDocumentMoniker": "DbFirst\\Controllers\\TodoController.cs",
-              "ToolTip": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoController.cs",
-              "RelativeToolTip": "DbFirst\\Controllers\\TodoController.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAUwF4AAAAnAAAAAAAAAA==",
+              "Title": "TodoUploadFileController.cs",
+              "DocumentMoniker": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoUploadFileController.cs",
+              "RelativeDocumentMoniker": "DbFirst\\Controllers\\TodoUploadFileController.cs",
+              "ToolTip": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\Controllers\\TodoUploadFileController.cs",
+              "RelativeToolTip": "DbFirst\\Controllers\\TodoUploadFileController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAIwFsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T13:05:02.89Z",
+              "WhenOpened": "2025-09-08T13:15:38.43Z",
               "EditorCaption": ""
             }
           ]

@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "value",
-        "Type": "System.String",
+        "Type": "DbFirst.Models.TodoList",
         "IsRequired": true
       }
     ],
