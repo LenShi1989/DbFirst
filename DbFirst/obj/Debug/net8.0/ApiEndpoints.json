@@ -21,28 +21,6 @@
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
-    "Method": "Post",
-    "RelativePath": "api/Todo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "value",
-        "Type": "DbFirst.Models.TodoList",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "DbFirst.Controllers.TodoController",
     "Method": "Get",
     "RelativePath": "api/Todo/{id}",
     "HttpMethod": "GET",
@@ -438,6 +416,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "Post",
+    "RelativePath": "api/Todo/Len",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Models.TodoList",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",

@@ -278,12 +278,25 @@ namespace DbFirst.Controllers
             return "value";
         }
 
-        // POST api/<TodoController>
-        [HttpPost]
-        public void Post([FromBody] TodoList value)
+        // POST api/Todo/Len
+        [HttpPost("Len")]
+        public IActionResult Post([FromBody] TodoList value)
         {
-            _todoContext.Add(value);
+            TodoList insert = new TodoList
+            {
+                Name = value.Name,
+                Enable = value.Enable,
+                Orders = value.Orders,
+                InsertTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001")
+            };
+
+            _todoContext.TodoList.Add(value);
             _todoContext.SaveChanges();
+
+            return Ok("已傳送");
         }
 
         // PUT api/<TodoController>/5
