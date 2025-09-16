@@ -259,11 +259,6 @@ namespace DbFirst.Controllers
         }
 
 
-
-
-
-
-
         // GET: api/<TodoController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -290,14 +285,76 @@ namespace DbFirst.Controllers
                 InsertTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
                 InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001")
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UploadFile = value.UploadFile
             };
 
-            _todoContext.TodoList.Add(value);
+            _todoContext.TodoList.Add(insert);
             _todoContext.SaveChanges();
 
             return Ok("已傳送");
         }
+
+
+        // POST api/Todo/nofk
+        [HttpPost("nofk")]
+        public IActionResult Postnofk([FromBody] TodoList value)
+        {
+            TodoList insert = new TodoList
+            {
+                Name = value.Name,
+                Enable = value.Enable,
+                Orders = value.Orders,
+                InsertTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001")
+            };
+
+            _todoContext.TodoList.Add(insert);
+            _todoContext.SaveChanges();
+
+            foreach (var temp in value.UploadFile)
+            {
+                UploadFile insert2 = new UploadFile
+                {
+                    Name = temp.Name,
+                    Src = temp.Src,
+                    TodoId = insert.TodoId
+                };
+
+                _todoContext.UploadFile.Add(insert2);
+                _todoContext.SaveChanges();
+            }
+            return Ok("已傳送");
+
+        }
+
+
+
+
+        // POST api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3/UploadFile
+        [HttpPost]
+        public string Post(Guid TodoId, [FromBody] UploadFile value)
+        {
+            if (!_todoContext.TodoList.Any(a => a.TodoId == TodoId))
+            {
+                return "找不到該事項";
+            }
+
+            UploadFile insert = new UploadFile
+            {
+                Name = value.Name,
+                Src = value.Src,
+                TodoId = TodoId
+            };
+
+            _todoContext.UploadFile.Add(insert);
+            _todoContext.SaveChanges();
+
+            return "ok";
+        }
+
 
         // PUT api/<TodoController>/5
         [HttpPut("{id}")]

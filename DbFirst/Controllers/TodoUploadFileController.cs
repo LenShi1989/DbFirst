@@ -58,7 +58,7 @@ namespace DbFirst.Controllers
             return Ok(result);
         }
 
-        // GET api/<TodoUploadFileController>/5
+        // GET api/TodoUploadFile/{UploadFileId}
         [HttpGet("{UploadFileId}")]
         public ActionResult<UploadFileDto> Get(Guid TodoId, Guid UploadFileId)
         {
@@ -68,15 +68,15 @@ namespace DbFirst.Controllers
             }
 
             var result = (from a in _todoContext.UploadFile
-                         where a.TodoId == TodoId
-                         && a.UploadFileId == UploadFileId
-                         select new UploadFileDto
-                         {
-                             Name = a.Name,
-                             Src = a.Src,
-                             TodoId = a.TodoId,
-                             UploadFileId = a.UploadFileId
-                         }).SingleOrDefault();
+                          where a.TodoId == TodoId
+                          && a.UploadFileId == UploadFileId
+                          select new UploadFileDto
+                          {
+                              Name = a.Name,
+                              Src = a.Src,
+                              TodoId = a.TodoId,
+                              UploadFileId = a.UploadFileId
+                          }).SingleOrDefault();
 
             if (result == null)
             {
@@ -88,9 +88,26 @@ namespace DbFirst.Controllers
 
         // POST api/<TodoUploadFileController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post(Guid TodoId, [FromBody] UploadFile value)
         {
+            if (!_todoContext.TodoList.Any(a => a.TodoId == TodoId))
+            {
+                return "找不到該事項";
+            }
+
+            UploadFile insert = new UploadFile
+            {
+                Name = value.Name,
+                Src = value.Src,
+                TodoId = TodoId
+            };
+
+            _todoContext.UploadFile.Add(insert);
+            _todoContext.SaveChanges();
+
+            return "ok";
         }
+        
 
         // PUT api/<TodoUploadFileController>/5
         [HttpPut("{id}")]

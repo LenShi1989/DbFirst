@@ -21,6 +21,37 @@
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "Post",
+    "RelativePath": "api/Todo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TodoId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "value",
+        "Type": "DbFirst.Models.UploadFile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
     "Method": "Get",
     "RelativePath": "api/Todo/{id}",
     "HttpMethod": "GET",
@@ -129,20 +160,24 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "TodoId",
+        "Type": "System.Guid",
         "IsRequired": true
       },
       {
-        "Name": "TodoId",
-        "Type": "",
+        "Name": "value",
+        "Type": "DbFirst.Models.UploadFile",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -458,6 +493,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "Postnofk",
+    "RelativePath": "api/Todo/nofk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Models.TodoList",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "DbFirst.Controllers.WeatherForecastController",
