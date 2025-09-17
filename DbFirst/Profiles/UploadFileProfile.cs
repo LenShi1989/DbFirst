@@ -9,6 +9,7 @@ namespace DbFirst.Profiles
         public UploadFileProfile()
         {
             CreateMap<UploadFile, UploadFileDto>();
+            CreateMap<uploadFilePostDto, UploadFile>();
         }
     }
 }

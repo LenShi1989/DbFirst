@@ -242,6 +242,35 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Todo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListPostDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListPostDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListPostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Todo/GetSQL": {
@@ -573,6 +602,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Todo/Len2": {
+      "post": {
+        "tags": [
+          "Todo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoList"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoList"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoList"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1073,6 +1133,30 @@
         },
         "additionalProperties": false
       },
+      "TodoListPostDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "enable": {
+            "type": "boolean"
+          },
+          "orders": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uploadFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/uploadFilePostDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UploadFile": {
         "type": "object",
         "properties": {
@@ -1137,6 +1221,20 @@
             "readOnly": true
           },
           "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "uploadFilePostDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "src": {
             "type": "string",
             "nullable": true
           }

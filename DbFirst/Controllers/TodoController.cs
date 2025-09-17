@@ -167,6 +167,7 @@ namespace DbFirst.Controllers
             return map;
         }
 
+
         [HttpGet("GetSQL")]
         public IEnumerable<TodoList> GetSQL(string name)
         {
@@ -295,6 +296,41 @@ namespace DbFirst.Controllers
             return Ok("已傳送");
         }
 
+        // POST api/Todo/Len2
+        [HttpPost("Len2")]
+        public IActionResult Len2([FromBody] TodoList value)
+        {
+            List<UploadFile> upl = new List<UploadFile>();
+
+            foreach (var temp in value.UploadFile)
+            {
+                UploadFile up = new UploadFile
+                {
+                    Name = temp.Name,
+                    Src = temp.Src
+                };
+                upl.Add(up);
+            }
+
+
+            TodoList insert = new TodoList
+            {
+                Name = value.Name,
+                Enable = value.Enable,
+                Orders = value.Orders,
+                InsertTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UploadFile = value.UploadFile
+            };
+
+            _todoContext.TodoList.Add(insert);
+            _todoContext.SaveChanges();
+
+            return Ok("已傳送");
+        }
+
 
         // POST api/Todo/nofk
         [HttpPost("nofk")]
@@ -331,8 +367,6 @@ namespace DbFirst.Controllers
         }
 
 
-
-
         // POST api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3/UploadFile
         [HttpPost]
         public string Post(Guid TodoId, [FromBody] UploadFile value)
@@ -354,6 +388,46 @@ namespace DbFirst.Controllers
 
             return "ok";
         }
+
+
+        // POST api/Todo/AutoMapper
+        [HttpPost("AutoMapper")]
+        public void PostAutoMapper([FromBody] TodoListPostDto value)
+        {
+            var map = _mapper.Map<TodoList>(value);
+
+            map.InsertTime = DateTime.Now;
+            map.UpdateTime = DateTime.Now;
+            map.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            map.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+
+            _todoContext.TodoList.Add(map);
+            _todoContext.SaveChanges();
+
+        }
+
+
+
+        // POST api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3/AutoMapper2/UploadFile
+        [HttpPost("AutoMapper2")]
+        public string PostAutoMapper2(Guid TodoId, [FromBody] uploadFilePostDto value)
+        {
+            if (!_todoContext.TodoList.Any(a => a.TodoId == TodoId))
+            {
+                return "找不到該事項";
+            }
+
+            var map = _mapper.Map<UploadFile>(value);
+            map.TodoId = TodoId;
+
+            _todoContext.UploadFile.Add(map);
+            _todoContext.SaveChanges();
+
+            return "ok";
+        }
+
+
 
 
         // PUT api/<TodoController>/5

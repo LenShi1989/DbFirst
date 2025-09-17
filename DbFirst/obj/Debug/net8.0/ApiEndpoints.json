@@ -325,6 +325,59 @@
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "PostAutoMapper",
+    "RelativePath": "api/Todo/AutoMapper",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Dtos.TodoListPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "PostAutoMapper",
+    "RelativePath": "api/Todo/AutoMapper",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TodoId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "value",
+        "Type": "DbFirst.Models.UploadFile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
     "Method": "GetSQL",
     "RelativePath": "api/Todo/GetSQL",
     "HttpMethod": "GET",
@@ -493,6 +546,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "Len2",
+    "RelativePath": "api/Todo/Len2",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Models.TodoList",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
