@@ -1,6 +1,6 @@
 ﻿namespace DbFirst.Dtos
 {
-    public partial class uploadFilePostDto
+    public partial class UploadFilePostDto
     {
         public string Name { get; set; }
         public string Src { get; set; }

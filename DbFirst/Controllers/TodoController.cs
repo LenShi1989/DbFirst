@@ -411,7 +411,7 @@ namespace DbFirst.Controllers
 
         // POST api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3/AutoMapper2/UploadFile
         [HttpPost("AutoMapper2")]
-        public string PostAutoMapper2(Guid TodoId, [FromBody] uploadFilePostDto value)
+        public string PostAutoMapper2(Guid TodoId, [FromBody] UploadFilePostDto value)
         {
             if (!_todoContext.TodoList.Any(a => a.TodoId == TodoId))
             {

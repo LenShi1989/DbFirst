@@ -347,8 +347,8 @@
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
-    "Method": "PostAutoMapper",
-    "RelativePath": "api/Todo/AutoMapper",
+    "Method": "PostAutoMapper2",
+    "RelativePath": "api/Todo/AutoMapper2",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -360,7 +360,7 @@
       },
       {
         "Name": "value",
-        "Type": "DbFirst.Models.UploadFile",
+        "Type": "DbFirst.Dtos.UploadFilePostDto",
         "IsRequired": true
       }
     ],

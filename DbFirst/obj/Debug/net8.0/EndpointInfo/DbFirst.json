@@ -671,6 +671,64 @@
         }
       }
     },
+    "/api/Todo/AutoMapper2": {
+      "post": {
+        "tags": [
+          "Todo"
+        ],
+        "parameters": [
+          {
+            "name": "TodoId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadFilePostDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadFilePostDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadFilePostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Todo/{TodoId}/UploadFile": {
       "get": {
         "tags": [
@@ -1147,10 +1205,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "uploadFiles": {
+          "uploadFile": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/uploadFilePostDto"
+              "$ref": "#/components/schemas/UploadFilePostDto"
             },
             "nullable": true
           }
@@ -1204,6 +1262,20 @@
         },
         "additionalProperties": false
       },
+      "UploadFilePostDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "src": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "WeatherForecast": {
         "type": "object",
         "properties": {
@@ -1221,20 +1293,6 @@
             "readOnly": true
           },
           "summary": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "uploadFilePostDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "src": {
             "type": "string",
             "nullable": true
           }
