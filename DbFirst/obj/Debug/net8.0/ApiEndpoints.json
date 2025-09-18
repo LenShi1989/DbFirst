@@ -565,6 +565,28 @@
   },
   {
     "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "Len3",
+    "RelativePath": "api/Todo/Len3",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Dtos.TodoListPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DbFirst.Controllers.TodoController",
     "Method": "Postnofk",
     "RelativePath": "api/Todo/nofk",
     "HttpMethod": "POST",

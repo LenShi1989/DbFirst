@@ -427,6 +427,34 @@ namespace DbFirst.Controllers
             return "ok";
         }
 
+        // POST api/Todo/Len3
+        [HttpPost("Len3")]
+        public void Len3([FromBody] TodoListPostDto value)
+        {
+            TodoList insert = new TodoList
+            {
+                InsertTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001")
+            };
+
+            _todoContext.TodoList.Add(insert).CurrentValues.SetValues(value);
+            _todoContext.SaveChanges();
+
+            foreach (var temp in value.UploadFile)
+            {
+                _todoContext.UploadFile.Add(new UploadFile()
+                {
+                    TodoId = insert.TodoId
+                }).CurrentValues.SetValues(temp);
+            }
+
+            _todoContext.SaveChanges();
+
+        }
+
+
 
 
 
