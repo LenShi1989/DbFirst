@@ -13,7 +13,6 @@ using System.Linq;
 using System.Net;
 
 
-
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DbFirst.Controllers
@@ -90,7 +89,7 @@ namespace DbFirst.Controllers
 
 
 
-        // GET api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3
+        // GET api/Todo/Len/1f3012b6-71ae-4e74-88fd-018ed53ed2d3
         [HttpGet("Len/{id}")]
         public TodoListDto Get(Guid id)
         {
@@ -118,6 +117,38 @@ namespace DbFirst.Controllers
                           }).SingleOrDefault();
             return result;
         }
+
+
+
+        // GET api/Todo/1f3012b6-71ae-4e74-88fd-018ed53ed2d3
+        [HttpGet("{TodoId}")]
+        public ActionResult<TodoListDto> GetOne(Guid TodoId)
+        {
+            var result = (from a in _todoContext.TodoList
+                          where a.TodoId == TodoId
+                          select new TodoListDto
+                          {
+                              Enable = a.Enable,
+                              InsertEmployeeName = a.InsertEmployee.Name,
+                              InsertTime = a.InsertTime,
+                              Name = a.Name,
+                              Orders = a.Orders,
+                              TodoId = a.TodoId,
+                              UpdateEmployeeName = a.UpdateEmployee.Name,
+                              UpdateTime = a.UpdateTime,
+                              UploadFiles = (from b in _todoContext.UploadFile
+                                             where a.TodoId == b.TodoId
+                                             select new UploadFileDto
+                                             {
+                                                 Name = b.Name,
+                                                 Src = b.Src,
+                                                 TodoId = b.TodoId,
+                                                 UploadFileId = b.UploadFileId
+                                             }).ToList()
+                          }).SingleOrDefault();
+            return result;
+        }
+
 
         // GET: api/Todo/AutoMapper
         [HttpGet("AutoMapper")]
@@ -456,6 +487,37 @@ namespace DbFirst.Controllers
 
 
 
+        // POST api/Todo/Len4
+        [HttpPost("Len4")]
+        public IActionResult Len4([FromBody] TodoListPostDto value)
+        {
+            TodoList insert = new TodoList
+            {
+                InsertTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001")
+            };
+
+            _todoContext.TodoList.Add(insert).CurrentValues.SetValues(value);
+            _todoContext.SaveChanges();
+
+            foreach (var temp in value.UploadFile)
+            {
+                _todoContext.UploadFile.Add(new UploadFile()
+                {
+                    TodoId = insert.TodoId
+                }).CurrentValues.SetValues(temp);
+            }
+
+            _todoContext.SaveChanges();
+
+            return CreatedAtAction(nameof(GetOne), new { TodoId = insert.TodoId }, insert);
+
+        }
+
+
+
         //POST api/Todo/postSQL
         [HttpPost("postSQL")]
         public void PostSQL([FromBody] TodoListPostDto value)
@@ -478,11 +540,56 @@ namespace DbFirst.Controllers
         }
 
 
-        // PUT api/<TodoController>/5
+        // PUT api/Todo/:id
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] TodoList value)
         {
+            //_todoContext.TodoList.Update(value);
+            //_todoContext.SaveChanges(); 
+
+
+            ///<summary>
+            /// 寫法一
+            /// </summary>
+            var update = _todoContext.TodoList.Find(id);
+            update.InsertTime = DateTime.Now;
+            update.UpdateTime = DateTime.Now;
+            update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+            update.Name = value.Name;
+            update.Orders = value.Orders;
+            update.Enable = value.Enable;
+            _todoContext.SaveChanges();
+
+
+            ///<summary>
+            /// 寫法二
+            /// </summary>
+            //var update = (from a in _todoContext.TodoList
+            //              where a.TodoId == id
+            //              select a).SingleOrDefault();
+
+            //if (update != null)
+            //{
+            //    update.InsertTime = DateTime.Now;
+            //    update.UpdateTime = DateTime.Now;
+            //    update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            //    update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+            //    update.Name = value.Name;
+            //    update.Orders = value.Orders;
+            //    update.Enable = value.Enable;
+            //    _todoContext.SaveChanges();
+            //}
         }
+
+
+
+
+
+
+
 
         // DELETE api/<TodoController>/5
         [HttpDelete("{id}")]
