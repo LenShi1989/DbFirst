@@ -602,6 +602,28 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "DbFirst.Controllers.TodoController",
+    "Method": "PostSQL",
+    "RelativePath": "api/Todo/postSQL",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "DbFirst.Dtos.TodoListPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "DbFirst.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

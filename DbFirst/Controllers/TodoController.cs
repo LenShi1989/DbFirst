@@ -456,6 +456,26 @@ namespace DbFirst.Controllers
 
 
 
+        //POST api/Todo/postSQL
+        [HttpPost("postSQL")]
+        public void PostSQL([FromBody] TodoListPostDto value)
+        {
+            int enableValue = value.Enable ? 1 : 0;
+            string sql = @"INSERT INTO [dbo].[TodoList]
+           ([Name]
+           ,[InsertTime]
+           ,[UpdateTime]
+           ,[Enable]
+           ,[Orders]
+           ,[InsertEmployeeId]
+           ,[UpdateEmployeeId])
+     VALUES
+          (N'" + value.Name + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," + enableValue + "," + value.Orders + "," + "'00000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-000000000001')";
+            //(N'" + value.Name + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," + value.Enable + "," + value.Orders + "," + "'00000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-000000000001')";
+
+            _todoContext.Database.ExecuteSqlRaw(sql);
+
+        }
 
 
         // PUT api/<TodoController>/5

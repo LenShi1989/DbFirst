@@ -5353,23 +5353,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Len\\.nuget\\packages\\": {},
-    "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\LenShih\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\DbFirst.csproj",
+      "projectUniqueName": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\DbFirst.csproj",
       "projectName": "DbFirst",
-      "projectPath": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\DbFirst.csproj",
-      "packagesPath": "C:\\Users\\Len\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Len\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\obj\\",
+      "projectPath": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\DbFirst.csproj",
+      "packagesPath": "C:\\Users\\LenShih\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LenShih\\Documents\\Visual Studio 2022\\Project\\DbFirst\\DbFirst\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Len\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LenShih\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
