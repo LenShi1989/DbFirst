@@ -603,11 +603,47 @@ namespace DbFirst.Controllers
                 update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
                 update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-                update.Name = value.Name;
-                update.Orders = value.Orders;
-                update.Enable = value.Enable;
+                //update.Name = value.Name;
+                //update.Orders = value.Orders;
+                //update.Enable = value.Enable;
+
+                //使用內建函式匹配
+                _todoContext.TodoList.Update(update).CurrentValues.SetValues(value);
+
+
                 _todoContext.SaveChanges();
             }
+        }
+
+
+
+        // PUT api/Todo/Len/:id
+        [HttpPut("Len/{id}")]
+        public IActionResult PutLen(Guid id, [FromBody] TodoListPutDto value)
+        {
+            if (id != value.TodoId)
+            {
+                return BadRequest("id 錯誤");
+            }
+
+            var update = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).SingleOrDefault();
+
+            if (update != null)
+            {
+                update.UpdateTime = DateTime.Now;
+                update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+                _todoContext.TodoList.Update(update).CurrentValues.SetValues(value);
+                _todoContext.SaveChanges();
+            }
+            else
+            {
+                return NotFound("找不到該事項");
+            }
+
+            return NoContent();
         }
 
 
