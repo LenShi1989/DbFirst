@@ -18,6 +18,16 @@ namespace DbFirst.Profiles
                 opt => opt.MapFrom(src => src.UpdateEmployee.Name + "(" + src.UpdateEmployeeId + ")")
                 );
             CreateMap<TodoListPostDto, TodoList>();
+
+            CreateMap<TodoListPutDto, TodoList>()
+                .ForMember(
+                dest => dest.UpdateTime,
+                opt => opt.MapFrom(src => DateTime.Now)
+                )
+                .ForMember(
+                dest => dest.UpdateEmployeeId,
+                opt => opt.MapFrom(src => Guid.Parse("00000000-0000-0000-0000-000000000001"))
+                );
         }
     }
 }

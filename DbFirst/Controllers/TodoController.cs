@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
+using System.Runtime.InteropServices;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -542,7 +545,7 @@ namespace DbFirst.Controllers
 
         // PUT api/Todo/:id
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] TodoList value)
+        public void Put(Guid id, [FromBody] TodoListPutDto value)
         {
             //_todoContext.TodoList.Update(value);
             //_todoContext.SaveChanges(); 
@@ -551,44 +554,79 @@ namespace DbFirst.Controllers
             ///<summary>
             /// 寫法一
             /// </summary>
-            var update = _todoContext.TodoList.Find(id);
-            update.InsertTime = DateTime.Now;
-            update.UpdateTime = DateTime.Now;
-            update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
-            update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            //var update = _todoContext.TodoList.Find(id);
+            //update.InsertTime = DateTime.Now;
+            //update.UpdateTime = DateTime.Now;
+            //update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            //update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-            update.Name = value.Name;
-            update.Orders = value.Orders;
-            update.Enable = value.Enable;
-            _todoContext.SaveChanges();
+            //update.Name = value.Name;
+            //update.Orders = value.Orders;
+            //update.Enable = value.Enable;
+            //_todoContext.SaveChanges();
 
 
             ///<summary>
             /// 寫法二
             /// </summary>
-            //var update = (from a in _todoContext.TodoList
-            //              where a.TodoId == id
-            //              select a).SingleOrDefault();
+            var update = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).SingleOrDefault();
 
-            //if (update != null)
-            //{
-            //    update.InsertTime = DateTime.Now;
-            //    update.UpdateTime = DateTime.Now;
-            //    update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
-            //    update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            if (update != null)
+            {
+                update.InsertTime = DateTime.Now;
+                update.UpdateTime = DateTime.Now;
+                update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+                update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-            //    update.Name = value.Name;
-            //    update.Orders = value.Orders;
-            //    update.Enable = value.Enable;
-            //    _todoContext.SaveChanges();
-            //}
+                update.Name = value.Name;
+                update.Orders = value.Orders;
+                update.Enable = value.Enable;
+                _todoContext.SaveChanges();
+            }
+        }
+
+
+        // PUT api/Todo
+        [HttpPut]
+        public void Put([FromBody] TodoListPutDto value)
+        {
+            var update = (from a in _todoContext.TodoList
+                          where a.TodoId == value.TodoId
+                          select a).SingleOrDefault();
+
+            if (update != null)
+            {
+                update.InsertTime = DateTime.Now;
+                update.UpdateTime = DateTime.Now;
+                update.InsertEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+                update.UpdateEmployeeId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+                update.Name = value.Name;
+                update.Orders = value.Orders;
+                update.Enable = value.Enable;
+                _todoContext.SaveChanges();
+            }
         }
 
 
 
+        // PUT api/Todo/AutoMapper/{id}
+        [HttpPut("AutoMapper/{id}")]
+        public void PutAutoMapper(Guid id, [FromBody] TodoListPutDto value)
+        {
+            var update = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).SingleOrDefault();
 
+            if (update != null)
+            {
+                _mapper.Map(value, update);
 
-
+                _todoContext.SaveChanges();
+            }
+        }
 
 
         // DELETE api/<TodoController>/5

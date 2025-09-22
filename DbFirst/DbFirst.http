@@ -1,6 +1,46 @@
-@DbFirst_HostAddress = http://localhost:5118
+@DbFirst_HostAddress = https://localhost:7283
+# @DbFirst_HostAddress = https://localhost:5118
 
 GET {{DbFirst_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+GET {{DbFirst_HostAddress}}/api/Todo/Len/
+Accept: application/json
+
+###
+
+PUT {{DbFirst_HostAddress}}/api/Todo
+Accept: application/json
+Content-Type: application/json
+
+{
+    "todoId": "2a987870-c8b4-4317-95f5-9cda8d985c5d",
+    "name": "Len新增測試99999999999999999999",
+    "insertTime": "2025-09-22",
+    "updateTime": "2025-09-22",
+    "enable": true,
+    "orders": 2,
+    "insertEmployeeId": "00000000-0000-0000-0000-000000000001",
+    "updateEmployeeId": "00000000-0000-0000-0000-000000000001"
+}
+
+###
+
+@id = 2a987870-c8b4-4317-95f5-9cda8d985c5d
+PUT {{DbFirst_HostAddress}}/api/todo/AutoMapper/{{id}}
+Content-Type: application/json
+
+{
+    "todoId": "2a987870-c8b4-4317-95f5-9cda8d985c5d",
+    "name": "Len新增測試7788",
+    "insertTime": "2025-09-22",
+    "updateTime": "2025-09-22",
+    "enable": true,
+    "orders": 1,
+    "insertEmployeeId": "00000000-0000-0000-0000-000000000001",
+    "updateEmployeeId": "00000000-0000-0000-0000-000000000001"
+}
 
 ###
