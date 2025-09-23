@@ -14,6 +14,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -596,6 +598,15 @@ namespace DbFirst.Controllers
                           where a.TodoId == value.TodoId
                           select a).SingleOrDefault();
 
+            //var update = _todoContext.TodoList
+            //    .AsNoTracking()
+            //    .Where(a => a.TodoId == value.TodoId)
+            //    .Select(a => new TodoList
+            //    {
+            //         TodoId = a.TodoId,
+            //    })
+            //    .SingleOrDefault();
+
             if (update != null)
             {
                 update.InsertTime = DateTime.Now;
@@ -665,11 +676,85 @@ namespace DbFirst.Controllers
         }
 
 
-        // DELETE api/<TodoController>/5
+        // DELETE api/Todo/id
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            var delete = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).Include(c => c.UploadFile).SingleOrDefault();
+
+            if (delete != null)
+            {
+                _todoContext.TodoList.Remove(delete);
+                _todoContext.SaveChanges();
+            }
         }
+
+
+        // DELETE api/Todo/nofk/id
+        [HttpDelete("nofk/{id}")]
+        public void NofkDelete(Guid id)
+        {
+            var child = (from a in _todoContext.UploadFile
+                         where a.TodoId == id
+                         select a);
+
+            _todoContext.UploadFile.RemoveRange(child);
+            _todoContext.SaveChanges();
+
+            var delete = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).SingleOrDefault();
+
+            if (delete != null)
+            {
+                _todoContext.TodoList.Remove(delete);
+                _todoContext.SaveChanges();
+            }
+        }
+
+
+
+        // DELETE api/Todo/list/id
+        [HttpDelete("list/{ids}")]
+        public void Delete(string ids)
+        {
+            List<Guid> deleteList = JsonSerializer.Deserialize<List<Guid>>(ids);
+            //string serializedDeleteList = JsonSerializer.Serialize(deleteList);
+            //Console.WriteLine($"deleteList = {serializedDeleteList}\n\n\n");
+
+            var delete = (from a in _todoContext.TodoList
+                          where deleteList.Contains(a.TodoId)
+                          select a).Include(c => c.UploadFile);
+
+            _todoContext.TodoList.RemoveRange(delete);
+            _todoContext.SaveChanges();
+        }
+
+
+
+        // DELETE api/Todo/Len/id
+        [HttpDelete("Len/{id}")]
+        public IActionResult LenDelete(Guid id)
+        {
+            var delete = (from a in _todoContext.TodoList
+                          where a.TodoId == id
+                          select a).Include(c => c.UploadFile).SingleOrDefault();
+
+            if (delete == null)
+            {
+                return NotFound("找不到刪除的資源");
+            }
+
+            _todoContext.TodoList.Remove(delete);
+            _todoContext.SaveChanges();
+
+            return NoContent();
+        }
+
+
+
 
         private static TodoListDto ItemToDto(TodoList a)
         {
