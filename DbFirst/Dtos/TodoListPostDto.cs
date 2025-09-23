@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DbFirst.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace DbFirst.Dtos
 {
@@ -9,6 +10,7 @@ namespace DbFirst.Dtos
         //[EmailAddress(ErrorMessage ="請輸入電子信箱")]
         //[StringLength(3)]
         //[RegularExpression("[a-z]")]
+        [TodoName]
         public string Name { get; set; }
         public bool Enable { get; set; }
         public int Orders { get; set; }
